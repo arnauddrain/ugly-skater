@@ -1,10 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://scenes/trash-fire.gd" type="Script" id=1]
 [ext_resource path="res://images/trash-fire.png" type="Texture" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 5.50012, 8.16227 )
+extents = Vector2( 5.50012, 4.81745 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "fire"
@@ -23,6 +23,9 @@ tracks/0/keys = {
 "values": [ 0, 3 ]
 }
 
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 6.30748, 2.8592 )
+
 [node name="TrashFire" type="StaticBody2D"]
 scale = Vector2( 5, 5 )
 script = ExtResource( 1 )
@@ -32,8 +35,18 @@ texture = ExtResource( 2 )
 hframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0.61828, 4.77637 )
+position = Vector2( 0.61828, 7.83034 )
 shape = SubResource( 1 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/fire = SubResource( 2 )
+
+[node name="CollisionFire" type="CollisionShape2D" parent="."]
+position = Vector2( 0.61828, -5.96046e-08 )
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 0.61828, 5.00687 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

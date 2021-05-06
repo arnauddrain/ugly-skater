@@ -16,12 +16,14 @@ func _ready():
 	var street_size = street_node_sample.get_node('Sprite').texture.get_size() * street_node_sample.scale
 	$Player.position.x = screen_size.x / 4
 	$Player.position.y = screen_size.y / 2
+	var camera = $Player.get_node("Camera")
+	camera.limit_top = 10
 	for i in range(9):
 		var street_node = street_scene.instance()
 		street_node.position.x = i * street_size.x;
 		street_node.position.y = screen_size.y - street_size.y / 2 + 20;
 		add_child(street_node)
-		move_child(street_node, 2)
+		move_child(street_node, 1)
 
 func _on_TrashTimer_timeout():
 	if rng.randi_range(0, 10) > 4:
@@ -33,4 +35,8 @@ func _on_TrashTimer_timeout():
 		add_child(trash_node)
 		move_child(trash_node, 100)
 		trash_node.position.y = screen_size.y / 2 + 20
-		trash_node.position.x = screen_size.x + 50	
+		trash_node.position.x = $Player.position.x + screen_size.x	
+
+
+func _on_Player_burned():
+	$Player.hide()

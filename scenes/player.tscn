@@ -1,10 +1,7 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://images/skater-combine.png" type="Texture" id=1]
 [ext_resource path="res://scripts/player.gd" type="Script" id=2]
-
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 75.4962, 84.9946 )
 
 [sub_resource type="Animation" id=2]
 resource_name = "jump"
@@ -49,10 +46,13 @@ hframes = 8
 vframes = 2
 frame = 7
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -15.376, 5.58046 )
-shape = SubResource( 1 )
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 anims/jump = SubResource( 2 )
 anims/skate = SubResource( 3 )
+
+[node name="Camera" type="Camera2D" parent="."]
+offset = Vector2( 200, 0 )
+current = true
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( 58.5566, -11.4037, 61.1838, -56.065, 54.1781, -70.9522, 12.1438, -78.3958, -29.0147, -56.9408, -35.5826, -36.7993, -44.7776, -31.1072, -78.9304, -44.2429, -57.9133, -18.8472, -83.7468, 6.98633, -80.244, 15.3056, -46.0912, -11.4037, -43.464, 56.0263, -79.8061, 63.9077, -88.1254, 75.7298, -86.8118, 91.4927, 23.5281, 92.8063, 23.5281, 78.7948, 23.0902, 64.3456, -17.6305, 58.6534, -29.8904, 35.447, -30.7662, -20.1608, 18.2738, -0.45723 )

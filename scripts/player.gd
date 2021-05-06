@@ -8,9 +8,12 @@ var jump_duration = 0.8
 var current_jump_duration = 0
 var jumping_more = false
 
+signal burned
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	skate()
+	velocity.x = 200
 
 func skate():
 	jumping = false
@@ -35,9 +38,15 @@ func _physics_process(delta):
 	if jumping_more && current_jump_duration > 0:
 		current_jump_duration -= delta
 		velocity.y += jump_speed * delta * 2
-	var collision =	move_and_slide(velocity, Vector2.UP)
+	move_and_slide(velocity, Vector2.UP)
 	if is_on_floor() && jumping:
 		skate()
+	for i in get_slide_count():
+		var collision = get_slide_collision(i)
+		if collision.collider.name == 'TrashFire':
+			emit_signal("burned")
+			hide()
+			velocity.x = 0
 	
 
 func _input(event):

@@ -1,27 +1,24 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://images/background.png" type="Texture" id=2]
 [ext_resource path="res://scripts/main.gd" type="Script" id=3]
-[ext_resource path="res://scripts/background.gd" type="Script" id=4]
 
 [node name="Node2D" type="Node"]
 
 [node name="Game" type="Node2D" parent="."]
 script = ExtResource( 3 )
 
-[node name="Background1" type="Sprite" parent="Game"]
-scale = Vector2( 5, 5 )
-texture = ExtResource( 2 )
-centered = false
-script = ExtResource( 4 )
+[node name="ParallaxBackground" type="ParallaxBackground" parent="Game"]
 
-[node name="Background2" type="Sprite" parent="Game"]
-position = Vector2( 1140, 0 )
+[node name="ParallaxLayer" type="ParallaxLayer" parent="Game/ParallaxBackground"]
+motion_scale = Vector2( 0.5, 1 )
+motion_mirroring = Vector2( 1140, 540 )
+
+[node name="Background1" type="Sprite" parent="Game/ParallaxBackground/ParallaxLayer"]
 scale = Vector2( 5, 5 )
 texture = ExtResource( 2 )
 centered = false
-script = ExtResource( 4 )
 
 [node name="Player" parent="Game" instance=ExtResource( 1 )]
 
@@ -29,4 +26,5 @@ script = ExtResource( 4 )
 wait_time = 1.5
 autostart = true
 
+[connection signal="burned" from="Game/Player" to="Game" method="_on_Player_burned"]
 [connection signal="timeout" from="Game/TrashTimer" to="Game" method="_on_TrashTimer_timeout"]
