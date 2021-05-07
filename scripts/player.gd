@@ -43,7 +43,7 @@ func _physics_process(delta):
 		skate()
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
-		if collision.collider.name == 'TrashFire':
+		if collision.collider is TrashFire:
 			emit_signal("burned")
 			hide()
 			velocity.x = 0
