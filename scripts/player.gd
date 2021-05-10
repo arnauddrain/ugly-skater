@@ -10,11 +10,9 @@ var jumping_more = false
 
 signal burned
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
-	skate()
-	velocity.x = 200
-
+	live()
+	
 func skate():
 	jumping = false
 	jumping_more = false
@@ -27,7 +25,16 @@ func jump():
 		jumping_more = true
 		current_jump_duration = jump_duration
 		$AnimationPlayer.play("jump")
-	
+
+func live():
+	show()
+	velocity.x = 200
+	skate()
+
+func die():
+	emit_signal("burned")
+	hide()
+	velocity = Vector2()
 	
 func stop_jump():
 	if jumping == true && jumping_more == true:
@@ -44,13 +51,10 @@ func _physics_process(delta):
 	for i in get_slide_count():
 		var collision = get_slide_collision(i)
 		if collision.collider is TrashFire:
-			emit_signal("burned")
-			hide()
-			velocity.x = 0
+			die()
 	
 
 func _input(event):
-
 	if event is InputEventScreenTouch and event.pressed:
 		jump()
 	if event is InputEventScreenTouch and !event.pressed:

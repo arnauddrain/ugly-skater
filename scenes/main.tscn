@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://images/background.png" type="Texture" id=2]
 [ext_resource path="res://scripts/main.gd" type="Script" id=3]
+[ext_resource path="res://scenes/hud.tscn" type="PackedScene" id=4]
 
 [node name="Node2D" type="Node"]
 
@@ -13,7 +14,7 @@ script = ExtResource( 3 )
 
 [node name="ParallaxLayer" type="ParallaxLayer" parent="Game/ParallaxBackground"]
 motion_scale = Vector2( 0.5, 1 )
-motion_mirroring = Vector2( 1140, 540 )
+motion_mirroring = Vector2( 1140, 0 )
 
 [node name="Background1" type="Sprite" parent="Game/ParallaxBackground/ParallaxLayer"]
 scale = Vector2( 5, 5 )
@@ -26,5 +27,11 @@ centered = false
 wait_time = 1.5
 autostart = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="Game"]
+layer = 100
+
+[node name="HUD" parent="Game/CanvasLayer" instance=ExtResource( 4 )]
+
 [connection signal="burned" from="Game/Player" to="Game" method="_on_Player_burned"]
 [connection signal="timeout" from="Game/TrashTimer" to="Game" method="_on_TrashTimer_timeout"]
+[connection signal="start_game" from="Game/CanvasLayer/HUD" to="Game" method="_on_HUD_start_game"]
