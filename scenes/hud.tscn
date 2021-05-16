@@ -1,6 +1,8 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://scenes/hud.gd" type="Script" id=1]
+[ext_resource path="res://images/button.png" type="Texture" id=2]
+[ext_resource path="res://images/button-pressed.png" type="Texture" id=3]
 
 [sub_resource type="DynamicFontData" id=1]
 font_path = "res://fonts/Xolonium-Regular.ttf"
@@ -22,20 +24,6 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="StartButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-margin_left = -98.0
-margin_top = -43.0
-margin_right = 98.0
-margin_bottom = 43.0
-text = "Start"
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
@@ -47,5 +35,28 @@ text = "Score: 0"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="StartButton" type="TextureButton" parent="."]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -162.0
+margin_top = -111.0
+margin_right = 162.0
+margin_bottom = -8.0
+texture_normal = ExtResource( 2 )
+texture_pressed = ExtResource( 3 )
+expand = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PlayLabel" type="Label" parent="StartButton"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+text = "Start"
+align = 1
+valign = 1
 
 [connection signal="pressed" from="StartButton" to="." method="_on_StartButton_pressed"]

@@ -41,6 +41,7 @@ func _on_up_score():
 	$CanvasLayer/HUD.update_score(score)
 	
 func _on_Player_burned():
+	$Music.stop()
 	$CanvasLayer/HUD.game_over()
 
 func generateStreet():
@@ -54,6 +55,7 @@ func generateStreet():
 		street_node.add_to_group("street")
 
 func _on_HUD_start_game():
+	$Music.play()
 	get_tree().call_group("trash", "remove")
 	score = 0
 	$CanvasLayer/HUD.update_score(score)

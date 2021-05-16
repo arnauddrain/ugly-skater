@@ -10,6 +10,7 @@ func update_score(score):
 
 func game_over():
 	$StartButton.show()
+	$StartButton/PlayLabel.text = "Restart"
 	get_tree().paused = true
 
 func _on_StartButton_pressed():

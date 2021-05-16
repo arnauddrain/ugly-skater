@@ -14,6 +14,8 @@ func _ready():
 	live()
 	
 func skate():
+	if jumping:
+		$Land.play()
 	jumping = false
 	jumping_more = false
 	$AnimationPlayer.play("skate")
@@ -24,6 +26,7 @@ func jump():
 		velocity.y = jump_speed
 		jumping_more = true
 		current_jump_duration = jump_duration
+		$Jump.play()
 		$AnimationPlayer.play("jump")
 
 func live():
