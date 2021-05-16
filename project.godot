@@ -10,11 +10,17 @@ config_version=4
 
 _global_script_classes=[ {
 "base": "StaticBody2D",
+"class": "Trash",
+"language": "GDScript",
+"path": "res://scripts/trash.gd"
+}, {
+"base": "Trash",
 "class": "TrashFire",
 "language": "GDScript",
 "path": "res://scenes/trash-fire.gd"
 } ]
 _global_script_class_icons={
+"Trash": "",
 "TrashFire": ""
 }
 
