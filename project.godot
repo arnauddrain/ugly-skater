@@ -28,7 +28,8 @@ _global_script_class_icons={
 
 config/name="Ugly Skater"
 run/main_scene="res://scenes/main.tscn"
-config/icon="res://icon.png"
+boot_splash/image="res://images/splash.png"
+config/icon="res://images/icon.png"
 
 [display]
 

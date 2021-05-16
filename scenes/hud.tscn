@@ -39,8 +39,10 @@ __meta__ = {
 [node name="ScoreLabel" type="Label" parent="."]
 anchor_top = 1.0
 anchor_bottom = 1.0
-margin_top = -78.0
-margin_right = 279.0
+margin_left = 8.0
+margin_top = -70.0
+margin_right = 287.0
+margin_bottom = 8.0
 text = "Score: 0"
 __meta__ = {
 "_edit_use_anchors_": false
