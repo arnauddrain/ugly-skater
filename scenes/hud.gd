@@ -6,7 +6,7 @@ func _ready():
 	get_tree().paused = true
 
 func update_score(score):
-	$ScoreLabel.text = "Score: " + str(score)
+	$ScoreLabel.text = "Score: " + str(score) + "m"
 
 func game_over():
 	$StartButton.show()

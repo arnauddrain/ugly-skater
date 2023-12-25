@@ -29,6 +29,9 @@ func jump():
 		$Jump.play()
 		$AnimationPlayer.play("jump")
 
+func faster():
+	player_velocity.x += 10
+
 func live():
 	show()
 	player_velocity.x = 200
