@@ -1,6 +1,6 @@
-extends KinematicBody2D
+extends CharacterBody2D
 
-var velocity = Vector2()
+var player_velocity = Vector2()
 var jumping = false
 var jump_speed = -400
 var gravity = 1000
@@ -23,7 +23,7 @@ func skate():
 func jump():
 	if jumping == false && is_on_floor():
 		jumping = true
-		velocity.y = jump_speed
+		player_velocity.y = jump_speed
 		jumping_more = true
 		current_jump_duration = jump_duration
 		$Jump.play()
@@ -31,29 +31,31 @@ func jump():
 
 func live():
 	show()
-	velocity.x = 200
+	player_velocity.x = 200
 	skate()
 
 func die():
 	emit_signal("burned")
 	hide()
-	velocity = Vector2()
+	player_velocity = Vector2()
 	
 func stop_jump():
 	if jumping == true && jumping_more == true:
 		jumping_more = false
 
 func _physics_process(delta):
-	velocity.y += gravity * delta
+	player_velocity.y += gravity * delta
 	if jumping_more && current_jump_duration > 0:
 		current_jump_duration -= delta
-		velocity.y += jump_speed * delta * 2
-	move_and_slide(velocity, Vector2.UP)
+		player_velocity.y += jump_speed * delta * 2
+	set_velocity(player_velocity)
+	set_up_direction(Vector2.UP)
+	move_and_slide()
 	if is_on_floor() && jumping:
 		skate()
-	for i in get_slide_count():
+	for i in get_slide_collision_count():
 		var collision = get_slide_collision(i)
-		if collision.collider is TrashFire:
+		if collision.get_collider() is TrashFire:
 			die()
 	
 

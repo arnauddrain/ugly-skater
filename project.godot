@@ -6,37 +6,21 @@
 ;   [section] ; section goes between []
 ;   param=value ; assign values to parameters
 
-config_version=4
-
-_global_script_classes=[ {
-"base": "StaticBody2D",
-"class": "Trash",
-"language": "GDScript",
-"path": "res://scripts/trash.gd"
-}, {
-"base": "Trash",
-"class": "TrashFire",
-"language": "GDScript",
-"path": "res://scenes/trash-fire.gd"
-} ]
-_global_script_class_icons={
-"Trash": "",
-"TrashFire": ""
-}
+config_version=5
 
 [application]
 
 config/name="Ugly Skater"
 run/main_scene="res://scenes/main.tscn"
+config/features=PackedStringArray("4.2")
 boot_splash/image="res://images/splash.png"
 config/icon="res://images/icon.png"
 
 [display]
 
-window/size/width=1140
-window/size/height=540
+window/size/viewport_width=1140
+window/size/viewport_height=540
 window/stretch/mode="2d"
-window/stretch/aspect="keep"
 
 [global]
 
@@ -52,5 +36,6 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
+environment/defaults/default_environment="res://default_env.tres"
 2d/snapping/use_gpu_pixel_snap=true
-environment/default_environment="res://default_env.tres"
